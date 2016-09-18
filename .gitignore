@@ -1,0 +1,7 @@
+﻿#下面是我的gitignore文件内容
+#忽略后缀名为.exe的文件
+*.exe
+#忽略.out文件
+*.out
+#忽略.pdf文件
+*.pdf
