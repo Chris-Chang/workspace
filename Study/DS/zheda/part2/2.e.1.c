@@ -6,7 +6,7 @@ typedef struct node *PolyNode;
 struct node{
 	int coef;
 	int expo;
-	PolyNode pnode; 
+	PolyNode pnode;
 };
 
 PolyNode readPoly()
@@ -23,7 +23,7 @@ PolyNode readPoly()
 	}
 	while(n--){
 		scanf("%d %d",&c,&e);
-		tmp = (PolyNode)malloc(sizeof(struct node));	
+		tmp = (PolyNode)malloc(sizeof(struct node));
 		tmp->coef=c;
 		tmp->expo=e;
 		rear->pnode=tmp;
@@ -37,17 +37,17 @@ int printPoly(PolyNode p)
 {
 	int flag=0;
 	if(!(p->pnode)){
-		printf("0 0\n");	
+		printf("0 0\n");
 		return 0;
 	}else{
-		p=p->pnode;	
+		p=p->pnode;
 	}
 	while(p){
 	if(!flag){
-		flag+=1;	
+		flag+=1;
 	}else{
-		printf(" ");	
-	}	
+		printf(" ");
+	}
 	printf("%d %d",p->coef,p->expo);
 	p=p->pnode;
 	}
@@ -76,7 +76,7 @@ PolyNode mult(PolyNode p1, PolyNode p2)
 	p->coef = p->expo = 0;
 	p->pnode = NULL;
 	Rear = p;
-	if(!t1||!t2)return p; 
+	if(!t1||!t2)return p;
 	while(t2){
 		c = t1->coef*t2->coef;
 		e = t1->expo+t2->expo;
@@ -90,18 +90,18 @@ PolyNode mult(PolyNode p1, PolyNode p2)
 			c = t1->coef*t2->coef;
 			e = t1->expo+t2->expo;
 			while(Rear->pnode&&Rear->pnode->expo>e){
-				Rear = Rear->pnode;	
+				Rear = Rear->pnode;
 			}
 			if(Rear->pnode&&Rear->pnode->expo==e){
 				if(Rear->pnode->coef+c){
-					Rear->pnode->coef+=c;	
+					Rear->pnode->coef+=c;
 				}else{
 					t = Rear->pnode;
 					Rear->pnode = t->pnode;
 					free(t);
-				}	
+				}
 			}else{
-				t = (PolyNode)malloc(sizeof(struct node));	
+				t = (PolyNode)malloc(sizeof(struct node));
 				t->coef = c;
 				t->expo = e;
 				t->pnode = Rear->pnode;
@@ -109,7 +109,7 @@ PolyNode mult(PolyNode p1, PolyNode p2)
 				Rear=Rear->pnode;
 			}
 			t2=t2->pnode;
-		}	
+		}
 		t1=t1->pnode;
 	}
 	return p;
@@ -147,7 +147,7 @@ PolyNode plus(PolyNode p1, PolyNode p2)
 				p1=p1->pnode;
 				p2=p2->pnode;
 				break;
-				
+
 		}
 
 	for(;p1;p1=p1->pnode)attach(p1->coef,p1->expo,&rear);
