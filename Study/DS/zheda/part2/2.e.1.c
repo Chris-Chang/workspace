@@ -18,6 +18,7 @@ PolyNode readPoly()
 	p->coef=p->expo=0;
 	p->pnode=NULL;
 	rear = p;
+	if(n==0)scanf("%d",&n);
 	while(n--){
 		scanf("%d %d",&c,&e);
 		tmp = (PolyNode)malloc(sizeof(struct node));	
@@ -67,11 +68,9 @@ PolyNode mult(PolyNode p1, PolyNode p2)
 {
 	PolyNode p,Rear,t1,t2,t;
 	int c, e;
-	if(!p1||!p2)return NULL;
-	t1 = p1;
-	t2 = p2;
 	t1 = p1->pnode;
 	t2 = p2->pnode;
+	if(!t1||!t2)return NULL;
 	p = (PolyNode)malloc(sizeof(struct node));
 	p->coef = p->expo = 0;
 	p->pnode = NULL;
@@ -162,7 +161,7 @@ int main()
 	p2 = readPoly();
 	mul = mult(p1,p2);
 	plu = plus(p1,p2);
-	printPoly(mul);
-	printPoly(plu);
+	printPoly(p1);
+	printPoly(p2);
 	return 0;
 }
