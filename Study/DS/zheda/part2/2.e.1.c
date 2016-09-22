@@ -19,7 +19,6 @@ PolyNode readPoly()
 	p->pnode=NULL;
 	rear = p;
 	if(n==0){
-	scanf("%d",&n);
 	return p;
 	}
 	while(n--){
