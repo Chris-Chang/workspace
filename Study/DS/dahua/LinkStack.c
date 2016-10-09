@@ -92,10 +92,10 @@ Status GetTop(PLinkStack S,SElemType *e)
 }
 
 /*入栈*/
-Status Push(PLinkStack S,SElemType *e)
+Status Push(PLinkStack S,SElemType e)
 {
     LinkStackPtr p = (LinkStackPtr)malloc(sizeof(struct StackNode));
-    p->data = *e;
+    p->data = e;
     p->next = S->top;
     S->top = p;
     S->count++;
@@ -148,7 +148,7 @@ int main()
     if(InitStack(&s))
         for(e = 1; e <= 12; e++)
         {
-            Push(s,&e);
+            Push(s,e);
         }
     printf("StackTraverse栈中元素从栈顶依次为:\n");
     StackTraverse(s,visit);
@@ -157,7 +157,7 @@ int main()
     Pop(s,&e);
     printf("Pop又弹出的元素为:%d\n",e);
     printf("Push将刚刚弹出的元素%d再次压入\n",e);
-    Push(s,&e);
+    Push(s,e);
     printf("StackEmpty判断栈是否为空:%d(1:是 0:不是)\n",StackEmpty(s));
     GetTop(s,&e);
     printf("GetTop当前栈顶元素为:%d\n",e);
