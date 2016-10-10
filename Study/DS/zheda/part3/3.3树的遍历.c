@@ -20,7 +20,7 @@ void PreOrderTraversal(BinTree BT)
 访问根节点
 终须遍历又子树
 */
-void PreOrderTraversal(BinTree BT)
+void InOrderTraversal(BinTree BT)
 {
     if(BT){
         PreOrderTraversal(BT->Left);
@@ -84,6 +84,7 @@ void InOrderTraversal(BinTree BT)
     }
 }
 
+/*后序遍历*/
 void PostOrder(BiTree root){
     BiTNode *p,*q   //q指针是用来判别右孩子是否已经访问过
     Stack S;
@@ -107,4 +108,60 @@ void PostOrder(BiTree root){
                 p = p -> RChild;  //同样以LRD顺序遍历右子树
         }
     }
+}
+
+
+/*层序遍历
+    核心:二维结构的线性化
+    从结点访问其左右儿子结点
+    访问左儿子后，右儿子结点怎么办
+        需要一个存储结构保存暂时不访问的结点
+        存储结构:堆栈、队列
+    层序遍历基本过程：先根节点入队，然后:
+    ①从队列中取出一个元素
+    ②访问该元素所指结点
+    ③若该元素所指结点的左右孩子结点非空
+    则将其左右孩子的指针顺序入队
+*/
+void LevelOrderTraversal(BinTree BT)
+{
+    Queue Q;BinTree T;
+    if(!BT)return;/*若是空树则直接返回*/
+    Q = CreateQueue(MaxSize)/*创建并初始化队列Q*/
+    AddQ(Q, BT);
+    while(!IsEmptyQ(Q)){
+        T=DeleteQ(Q);
+        printf("%d\n",T->Data);/*访问取出队列的结点*/
+        if(T->Left) AddQ(Q, T->Left);
+        if(T->Right) AddQ(Q,T->Right);
+    }
+}
+
+/*输出二叉树的叶子结点
+    在二叉树的遍历算法中增加检测结点的"左右子树是否都为空"
+*/
+
+void PreOrderPrintLeaves(BinTree BT)
+{
+    if(BT){
+        if(!BT->Left && !BT->Right)
+            printf("%d",BT->Data);
+        PreOrderPrintLeaves(BT->Left);
+        PreOrderPrintLeaves(BT->Right);
+    }
+}
+
+/*
+求二叉树的高度
+ */
+int PostOrderGetHeight(BinTree BT)
+{
+    int HL, HR, MaxH;
+    if(BT){
+        HL=PostOrderGetHeight(BT->Left);/*求左子树的深度*/
+        HR=PostOrderGetHeight(BT->Right);/*求右子树的深度*/
+        MaxH = (HL>HR)?HL:HR;/*取左右子树较大的深度*/
+        return (MaxH + 1);/*返回树的深度*/
+    }
+    else return 0;/*空树深度为0*/
 }
