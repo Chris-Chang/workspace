@@ -1,10 +1,7 @@
 #include <stdio.h>
 
-
-void main()
+int main()
 {
-int i;
-scanf("%5d",&i);
-printf("%05d\n",i);
-
+printf("Hello 你好,常智dd!")
+return 0;
 }
