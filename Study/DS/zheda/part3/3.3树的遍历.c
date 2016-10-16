@@ -35,11 +35,11 @@ void InOrderTraversal(BinTree BT)
     访问根节点
 */
 
-void PreOrderTraversal(BinTree BT)
+void PostOrderTraversal(BinTree BT)
 {
     if(BT){
-        PreOrderTraversal(BT->Left);
-        PreOrderTraversal(BT->Right);
+        PostOrderTraversal(BT->Left);
+        PostOrderTraversal(BT->Right);
         printf("%d",BT->Data);
     }
 }
